@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>闪好采 - 招标采购比对任务管理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00C1A3",
+                        "background-light": "#f8fcfb",
+                        "background-dark": "#0a1210",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: rgba(0, 193, 163, 0.1);
+            border-right: 4px solid #00C1A3;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">闪好采系统</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">招标采购管理平台</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-sm font-medium">首页</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">folder_managed</span>
+<span class="text-sm font-medium">项目管理</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-primary active-nav rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+<span class="text-sm font-medium">比对任务管理</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">专家库</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">系统设置</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<button class="flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-bold text-red-500 bg-red-50 dark:bg-red-900/20 rounded-xl hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+                    退出登录
+                </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Top Header -->
+<header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold text-slate-800 dark:text-slate-100">招标采购 - 比对任务管理中心</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="搜索任务..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="用户头像" data-alt="User profile avatar with generic human icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyJi4DuU2vyLAHiCE69cC3G07Dx7fYfddhR3jjtgzVIZLcMhqjv96dJnfPwoJHpMyFiJsQZdiyu6uXftYHLCFyo2tWdzfbXvswjXn3V4FKUG448VMEnrIa7KCRdkItmT3_4o5x_8n7o-RbcZwC2WWctHt9vOgi5WaXwQPwcuoTDCrqAQpv3Nn-98FGejb1nqRxa4hWsObhjWDDezKAJIlP93OsDiu9jUadoTJH6JVHW70TJN8soHiRBvFuS0GdrknZu7jwKkX6IP_7"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-8 space-y-6">
+<!-- Title & New Task Button -->
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-2xl font-black text-slate-900 dark:text-slate-50 tracking-tight">比对任务列表</h3>
+<p class="text-slate-500 text-sm mt-1">高效分析招标文件差异，智能辅助决策过程</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                        新建比对任务
+                    </button>
+</div>
+<!-- Filters -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">任务名称</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary" placeholder="输入关键词检索" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">起止日期</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">calendar_today</span>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary" placeholder="2023-01-01 至 2023-12-31" type="text"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">任务状态</label>
+<select class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary">
+<option>全部状态</option>
+<option>进行中</option>
+<option>已完成</option>
+<option>已失败</option>
+</select>
+</div>
+<div class="flex items-end">
+<button class="w-full bg-primary/10 text-primary hover:bg-primary/20 font-bold py-2.5 rounded-lg transition-colors">
+                            重置筛选条件
+                        </button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">任务ID</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">任务名称</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">创建时间</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">进度/状态</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Task 1: In Progress -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5 text-sm font-mono text-slate-500">BD-20231024-01</td>
+<td class="px-6 py-5 text-sm font-semibold">智慧园区办公用品采购招标文件比对分析</td>
+<td class="px-6 py-5 text-sm text-slate-500">2023-10-24 14:20</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1.5 w-48">
+<div class="flex justify-between text-[10px] font-bold text-primary">
+<span>进行中</span>
+<span>70%</span>
+</div>
+<div class="w-full bg-primary/10 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-right space-x-4">
+<button class="text-primary hover:text-primary/80 text-sm font-bold">查看详情</button>
+<button class="text-red-500 hover:text-red-600 text-sm font-bold">删除</button>
+</td>
+</tr>
+<!-- Task 2: In Progress 45% -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5 text-sm font-mono text-slate-500">BD-20231024-02</td>
+<td class="px-6 py-5 text-sm font-semibold">年度IT设备维保服务合同条款比对</td>
+<td class="px-6 py-5 text-sm text-slate-500">2023-10-24 15:45</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1.5 w-48">
+<div class="flex justify-between text-[10px] font-bold text-primary">
+<span>提取内容中</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-primary/10 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-right space-x-4">
+<button class="text-primary hover:text-primary/80 text-sm font-bold">查看详情</button>
+<button class="text-red-500 hover:text-red-600 text-sm font-bold">删除</button>
+</td>
+</tr>
+<!-- Task 3: Completed -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5 text-sm font-mono text-slate-500">BD-20231023-12</td>
+<td class="px-6 py-5 text-sm font-semibold">广州分公司数据中心二期扩容项目比对</td>
+<td class="px-6 py-5 text-sm text-slate-500">2023-10-23 09:12</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-xs font-bold rounded-full">
+<span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
+                                        比对完成
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right space-x-4">
+<button class="text-primary hover:text-primary/80 text-sm font-bold">查看详情</button>
+<button class="text-red-500 hover:text-red-600 text-sm font-bold">删除</button>
+</td>
+</tr>
+<!-- Task 4: Failed -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5 text-sm font-mono text-slate-500">BD-20231022-05</td>
+<td class="px-6 py-5 text-sm font-semibold">外语培训服务供应商入围方案比对</td>
+<td class="px-6 py-5 text-sm text-slate-500">2023-10-22 17:30</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold rounded-full">
+<span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
+                                        处理失败
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right space-x-4">
+<button class="text-primary hover:text-primary/80 text-sm font-bold">重新开始</button>
+<button class="text-red-500 hover:text-red-600 text-sm font-bold">删除</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800">
+<p class="text-xs text-slate-500">显示 1 到 4 条，共 24 条任务</p>
+<div class="flex gap-2">
+<button class="p-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium hover:bg-slate-50">2</button>
+<button class="w-8 h-8 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium hover:bg-slate-50">3</button>
+<button class="p-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

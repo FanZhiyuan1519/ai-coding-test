@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务详情 - 招标采购比对系统</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00C1A3',
+                    },
+                    fontFamily: {
+                        display: ['Public Sans', 'PingFang SC', 'Microsoft YaHei', 'sans-serif']
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-gray-50 font-display text-slate-900">
+    <div id="toastContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">description</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight">闪好采系统</h1>
+                    <p class="text-xs text-slate-500">招标采购管理平台</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-3 text-primary bg-primary/10 border-r-4 border-primary rounded-lg transition-colors" href="index.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+                    <span class="text-sm font-medium">比对任务管理</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col min-w-0">
+            <!-- Header -->
+            <header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center">
+                <nav class="flex items-center gap-2 text-sm text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="index.html">比对任务</a>
+                    <span class="material-symbols-outlined text-xs">chevron_right</span>
+                    <span class="text-slate-600">任务详情</span>
+                </nav>
+            </header>
+
+            <!-- Content -->
+            <div class="p-8 space-y-6">
+                <!-- Task Info -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 id="taskName" class="text-xl font-bold text-slate-800">加载中...</h3>
+                            <p class="text-sm text-slate-500 mt-1">
+                                任务编号：<span id="taskId" class="font-mono">-</span> | 
+                                创建时间：<span id="taskCreatedAt">-</span> | 
+                                <span id="docCount">0 份</span>文件
+                            </p>
+                        </div>
+                        <div id="taskStatusBadge" class="flex items-center gap-2"></div>
+                    </div>
+
+                    <!-- Progress -->
+                    <div id="progressSection" class="hidden mt-6">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="text-slate-600">处理进度</span>
+                            <span id="progressText" class="text-primary font-bold">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-2">
+                            <div id="progressBar" class="bg-primary h-2 rounded-full transition-all" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Section -->
+                <div id="uploadSection" class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h4 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">upload_file</span>
+                        上传投标文件
+                    </h4>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">供应商名称</label>
+                                <input id="supplierNameInput" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary" placeholder="请输入供应商名称" type="text" maxlength="255">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">选择文件</label>
+                                <div class="relative">
+                                    <input id="fileInput" class="hidden" type="file" accept=".txt,.pdf,.docx">
+                                    <div onclick="document.getElementById('fileInput').click()" class="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-slate-200 rounded-lg cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors">
+                                        <span class="material-symbols-outlined text-slate-400">attach_file</span>
+                                        <span id="fileNameDisplay" class="text-sm text-slate-500">点击选择文件或拖拽文件到此处</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">支持 .txt、.pdf、.docx 格式，单文件不超过 50MB</p>
+                            </div>
+                            <button onclick="handleFileUpload()" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">cloud_upload</span>
+                                上传文件
+                            </button>
+                            <div id="uploadProgress" class="hidden">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-500">上传中...</span>
+                                    <span id="uploadProgressText" class="text-primary font-bold">0%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                                    <div id="uploadBar" class="bg-primary h-1.5 rounded-full transition-all" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-4">
+                            <h5 class="text-sm font-bold text-slate-700 mb-3">上传须知</h5>
+                            <ul class="text-xs text-slate-500 space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    每份文件需标注对应的供应商名称
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    至少上传 2 份文件才能触发比对
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    支持 txt、pdf、docx 格式（文本型 PDF）
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    扫描件 PDF 暂不支持识别
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    单个任务最多上传 20 份文件
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents List -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">folder_open</span>
+                            已上传文件列表
+                        </h4>
+                    </div>
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600">
+                                <th class="px-6 py-3 text-xs font-bold uppercase tracking-wider">供应商名称</th>
+                                <th class="px-6 py-3 text-xs font-bold uppercase tracking-wider">文件名</th>
+                                <th class="px-6 py-3 text-xs font-bold uppercase tracking-wider">大小</th>
+                                <th class="px-6 py-3 text-xs font-bold uppercase tracking-wider">上传时间</th>
+                                <th class="px-6 py-3 text-xs font-bold uppercase tracking-wider text-right">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documentsTableBody" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="5" class="px-6 py-10 text-center text-slate-400">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex justify-between items-center">
+                    <button onclick="goBack()" class="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        返回列表
+                    </button>
+                    <div class="flex gap-3">
+                        <button id="runBtn" onclick="handleRunCompare()" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span class="material-symbols-outlined">play_arrow</span>
+                            触发比对
+                        </button>
+                        <button id="reportBtn" onclick="goToReport()" class="hidden flex items-center gap-2 bg-green-600 hover:bg-green-600/90 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-green-600/20 transition-all">
+                            <span class="material-symbols-outlined">description</span>
+                            查看报告
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/task.js"></script>
+</body>
+</html>

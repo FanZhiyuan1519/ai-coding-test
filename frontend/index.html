@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>招标采购比对系统</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00C1A3',
+                    },
+                    fontFamily: {
+                        display: ['Public Sans', 'PingFang SC', 'Microsoft YaHei', 'sans-serif']
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-gray-50 font-display text-slate-900">
+    <div id="toastContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">description</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight">闪好采系统</h1>
+                    <p class="text-xs text-slate-500">招标采购管理平台</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-3 text-primary bg-primary/10 border-r-4 border-primary rounded-lg transition-colors" href="#">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+                    <span class="text-sm font-medium">比对任务管理</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col min-w-0">
+            <!-- Header -->
+            <header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between">
+                <h2 class="text-lg font-bold text-slate-800">招标采购 - 比对任务管理中心</h2>
+            </header>
+
+            <!-- Content -->
+            <div class="p-8 space-y-6">
+                <!-- Title -->
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h3 class="text-2xl font-black text-slate-900 tracking-tight">比对任务列表</h3>
+                        <p class="text-slate-500 text-sm mt-1">高效分析投标文件差异，智能辅助决策过程</p>
+                    </div>
+                    <button onclick="openCreateModal()" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-primary/20 transition-all">
+                        <span class="material-symbols-outlined">add_circle</span>
+                        新建比对任务
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="space-y-1.5">
+                        <label class="text-sm font-semibold text-slate-700">任务名称</label>
+                        <input id="searchInput" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary" placeholder="输入关键词检索" type="text">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-sm font-semibold text-slate-700">任务状态</label>
+                        <select id="statusFilter" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary">
+                            <option value="">全部状态</option>
+                            <option value="pending">等待中</option>
+                            <option value="processing">进行中</option>
+                            <option value="completed">已完成</option>
+                            <option value="failed">失败</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="loadTasks(1)" class="w-full bg-primary/10 text-primary hover:bg-primary/20 font-bold py-2.5 rounded-lg transition-colors">
+                            搜索
+                        </button>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="document.getElementById('searchInput').value='';document.getElementById('statusFilter').value='';loadTasks(1)" class="w-full bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold py-2.5 rounded-lg transition-colors">
+                            重置筛选
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">任务ID</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">任务名称</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">创建时间</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">进度/状态</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="taskTableBody" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="5" class="px-6 py-12 text-center text-slate-400">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    <div class="px-6 py-4 flex items-center justify-between bg-slate-50/50 border-t border-slate-100">
+                        <p id="totalText" class="text-xs text-slate-500">显示 0 到 0 条，共 0 条任务</p>
+                        <div id="pagination" class="flex gap-2"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Task Modal -->
+    <div id="createModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-slate-800">新建比对任务</h3>
+                <button onclick="closeCreateModal()" class="text-slate-400 hover:text-slate-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6">
+                <label class="block text-sm font-semibold text-slate-700 mb-2">任务名称</label>
+                <input id="taskNameInput" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-primary focus:border-primary" placeholder="请输入任务名称" type="text" maxlength="255">
+            </div>
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3">
+                <button onclick="closeCreateModal()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">取消</button>
+                <button onclick="handleCreateTask()" class="px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors">创建任务</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirm Modal -->
+    <div id="deleteModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4">
+            <div class="px-6 py-4 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-800">确认删除</h3>
+            </div>
+            <div class="p-6">
+                <p class="text-slate-600">确定要删除任务"<span id="deleteTaskName" class="font-medium"></span>"吗？</p>
+                <p class="text-sm text-red-500 mt-2">此操作将删除任务及所有关联文件，且不可恢复。</p>
+                <input type="hidden" id="deleteTaskId">
+            </div>
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3">
+                <button onclick="closeDeleteModal()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">取消</button>
+                <button onclick="handleDeleteTask()" class="px-6 py-2 bg-red-500 text-white text-sm font-bold rounded-lg hover:bg-red-600 transition-colors">确认删除</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/tasks.js"></script>
+</body>
+</html>

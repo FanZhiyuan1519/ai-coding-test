@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33ccbb",
+                        "primary-light": "#e6f7f6",
+                        "background-light": "#f0f2f5",
+                        "sidebar-bg": "#f9fafb",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "PingFang SC", "Microsoft YaHei", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "4px", "lg": "8px", "xl": "12px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>投标文件雷同比对中心 - 报告详情</title>
+</head>
+<body class="bg-background-light font-display text-slate-700 transition-colors duration-200 min-h-screen flex">
+<!-- Left Sidebar Navigation -->
+<aside class="w-64 bg-sidebar-bg border-r border-slate-200 flex flex-col sticky top-0 h-screen shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">analytics</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-primary">闪好采</h2>
+</div>
+<div class="px-4 mb-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="搜索菜单..." type="text"/>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-sm text-slate-600 hover:bg-white hover:text-primary transition-colors rounded" href="#">
+<span class="material-symbols-outlined text-xl">description</span>
+<span>采购合同范本库</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm text-slate-600 hover:bg-white hover:text-primary transition-colors rounded" href="#">
+<span class="material-symbols-outlined text-xl">gavel</span>
+<span>法律法规制度库</span>
+</a>
+<div class="pt-2">
+<div class="px-4 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+<span>智能比对</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-sm text-slate-600 hover:bg-white hover:text-primary transition-colors rounded" href="#">
+<span class="material-symbols-outlined text-xl">file_copy</span>
+<span>招标文件生成</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm text-primary bg-white shadow-sm rounded font-medium" href="#">
+<span class="material-symbols-outlined text-xl">bar_chart_4_bars</span>
+<span>比对报告详情</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm text-slate-600 hover:bg-white hover:text-primary transition-colors rounded" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span>特征库管理</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-200">
+<div class="flex items-center gap-3 px-2">
+<div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">
+                管
+            </div>
+<div class="text-xs">
+<div class="font-bold text-slate-700">系统管理员</div>
+<div class="text-slate-400">admin@zh.com</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Top Header -->
+<header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-30">
+<nav class="flex items-center gap-2 text-xs text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">首页</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">比对任务</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-600">报告详情</span>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="flex-1 p-8">
+<!-- Title Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div class="space-y-2">
+<h1 class="text-2xl font-bold text-slate-800">项目比对报告: ZB-2023-0892</h1>
+<p class="text-sm text-slate-500">比对范围：5份投标文件 | 生成时间：2023-10-24 14:30:15 | 算法引擎：DeepCheck v4.2</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white border border-slate-200 rounded text-sm font-medium hover:bg-slate-50 transition-colors">
+                    导出 PDF
+                </button>
+<button class="px-4 py-2 bg-primary text-white rounded text-sm font-medium shadow-sm hover:opacity-90 transition-colors">
+                    分享报告
+                </button>
+</div>
+</div>
+<!-- Similarity Matrix Section -->
+<section class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden mb-8">
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+<h3 class="font-bold text-slate-800">整体比对矩阵 (Similarity Matrix)</h3>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-2 py-1 bg-red-50 text-red-500 text-[10px] font-bold rounded">检出 2 对高风险项</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-center border-collapse">
+<thead>
+<tr class="bg-primary-light/50 text-slate-600">
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-left pl-6">投标单位</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">单位 A</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">单位 B</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">单位 C</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">单位 D</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">单位 E</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr>
+<td class="p-4 font-bold text-left pl-6 bg-slate-50/30">单位 A</td>
+<td class="p-4 text-slate-300">-</td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-yellow-50 text-yellow-600 font-bold text-sm">42%</div></td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-red-50 text-red-600 font-bold text-sm">78%</div></td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 font-bold text-sm">12%</div></td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 font-bold text-sm">08%</div></td>
+</tr>
+<tr>
+<td class="p-4 font-bold text-left pl-6 bg-slate-50/30">单位 B</td>
+<td class="p-4 text-slate-300">42%</td>
+<td class="p-4 text-slate-300">-</td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-yellow-50 text-yellow-600 font-bold text-sm">35%</div></td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 font-bold text-sm">15%</div></td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-red-50 text-red-600 font-bold text-sm">82%</div></td>
+</tr>
+<tr>
+<td class="p-4 font-bold text-left pl-6 bg-slate-50/30">单位 C</td>
+<td class="p-4 text-slate-300">78%</td>
+<td class="p-4 text-slate-300">35%</td>
+<td class="p-4 text-slate-300">-</td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 font-bold text-sm">22%</div></td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 font-bold text-sm">14%</div></td>
+</tr>
+<tr>
+<td class="p-4 font-bold text-left pl-6 bg-slate-50/30">单位 D</td>
+<td class="p-4 text-slate-300">12%</td>
+<td class="p-4 text-slate-300">15%</td>
+<td class="p-4 text-slate-300">22%</td>
+<td class="p-4 text-slate-300">-</td>
+<td class="p-4"><div class="mx-auto w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 font-bold text-sm">19%</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-3 bg-slate-50 flex gap-6 text-[10px] text-slate-400 border-t border-slate-100">
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-red-400"></span> 高风险 (≥70%)</div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-yellow-400"></span> 中风险 (30%-69%)</div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-400"></span> 低风险 (&lt;30%)</div>
+</div>
+</section>
+<!-- Key Information Similarity Audit Module -->
+<section class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden mb-8">
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">contact_page</span>
+<h3 class="font-bold text-slate-800">关键信息雷同性审查</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 text-sm">warning</span>
+<span class="text-red-500 text-[10px] font-bold">检测到 3 项关键字段异常重合</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary-light/50 text-slate-600">
+<th class="p-4 text-xs font-bold uppercase tracking-wider pl-6">审查维度</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">投标单位 B</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">投标单位 E</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider">风险判定</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider pr-6">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="p-4 text-sm font-medium pl-6">经营地址</td>
+<td class="p-4 text-sm text-slate-600">杭州市滨江区网商路XXX号2楼</td>
+<td class="p-4 text-sm text-slate-600">杭州市滨江区网商路XXX号2楼</td>
+<td class="p-4"><span class="px-2 py-0.5 bg-red-50 text-red-500 rounded text-[10px] font-bold">完全一致</span></td>
+<td class="p-4 pr-6"><button class="text-primary text-xs font-bold hover:underline">查看详情</button></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="p-4 text-sm font-medium pl-6">联系电话</td>
+<td class="p-4 text-sm text-slate-600">0571-8899XXXX</td>
+<td class="p-4 text-sm text-slate-600">0571-8899XXXX</td>
+<td class="p-4"><span class="px-2 py-0.5 bg-red-50 text-red-500 rounded text-[10px] font-bold">完全一致</span></td>
+<td class="p-4 pr-6"><button class="text-primary text-xs font-bold hover:underline">查看详情</button></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="p-4 text-sm font-medium pl-6">法人代表/委托人</td>
+<td class="p-4 text-sm text-slate-600">王*伟 (法人)</td>
+<td class="p-4 text-sm text-slate-600">李*强 (委托人)</td>
+<td class="p-4">
+<div class="flex flex-col gap-0.5">
+<span class="px-2 py-0.5 bg-red-50 text-red-500 rounded text-[10px] font-bold w-fit">社保缴纳单位一致</span>
+<span class="text-[10px] text-slate-400">两人均为同一母公司员工</span>
+</div>
+</td>
+<td class="p-4 pr-6"><button class="text-primary text-xs font-bold hover:underline">查看详情</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Bid Price Consistency Analysis Module -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+<div class="lg:col-span-2 bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">equalizer</span>
+<h3 class="font-bold text-slate-800">投标报价异常一致性分析</h3>
+</div>
+<span class="px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[10px] font-bold text-slate-500">控制价：1,200,000.00</span>
+</div>
+<div class="relative h-64 w-full bg-slate-50 rounded-lg mb-8 p-6 flex flex-col justify-end">
+<div class="absolute inset-x-6 top-4 flex justify-between text-[10px] text-slate-400">
+<span>1.2M</span>
+<span>1.1M</span>
+<span>1.0M</span>
+<span>0.9M</span>
+</div>
+<div class="flex items-end justify-around h-48 px-4 gap-6">
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-primary/30 rounded-t transition-all hover:bg-primary/50" style="height: 85%"></div>
+<span class="text-[10px] mt-2 font-medium text-slate-500">单位 A</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-red-400 rounded-t transition-all relative" style="height: 72%">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-red-500">异常</div>
+</div>
+<span class="text-[10px] mt-2 font-medium text-slate-500">单位 B</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-red-400 rounded-t transition-all" style="height: 71%"></div>
+<span class="text-[10px] mt-2 font-medium text-slate-500">单位 C</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-primary/30 rounded-t transition-all hover:bg-primary/50" style="height: 92%"></div>
+<span class="text-[10px] mt-2 font-medium text-slate-500">单位 D</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-primary/30 rounded-t transition-all hover:bg-primary/50" style="height: 78%"></div>
+<span class="text-[10px] mt-2 font-medium text-slate-500">单位 E</span>
+</div>
+</div>
+<div class="absolute left-0 right-0 border-t border-dashed border-slate-200" style="bottom: 80%"></div>
+</div>
+<div class="grid grid-cols-5 gap-4">
+<div class="p-3 bg-slate-50 rounded-lg">
+<div class="text-[10px] text-slate-400 mb-1">单位 A</div>
+<div class="text-sm font-bold text-slate-700">105.2万</div>
+</div>
+<div class="p-3 bg-red-50 rounded-lg border border-red-100">
+<div class="text-[10px] text-red-400 mb-1">单位 B</div>
+<div class="text-sm font-bold text-red-600">92.5万</div>
+</div>
+<div class="p-3 bg-red-50 rounded-lg border border-red-100">
+<div class="text-[10px] text-red-400 mb-1">单位 C</div>
+<div class="text-sm font-bold text-red-600">91.8万</div>
+</div>
+<div class="p-3 bg-slate-50 rounded-lg">
+<div class="text-[10px] text-slate-400 mb-1">单位 D</div>
+<div class="text-sm font-bold text-slate-700">112.4万</div>
+</div>
+<div class="p-3 bg-slate-50 rounded-lg">
+<div class="text-[10px] text-slate-400 mb-1">单位 E</div>
+<div class="text-sm font-bold text-slate-700">98.6万</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-800 text-white rounded-lg p-6 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div>
+<h3 class="font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-400">priority_high</span>
+                        异常性分析报告
+                    </h3>
+<div class="space-y-4">
+<div class="p-4 bg-white/5 rounded-lg border border-white/10">
+<h4 class="text-xs font-bold text-red-300 mb-2">分项单价高度趋同</h4>
+<p class="text-[11px] leading-relaxed text-slate-300">
+                                投标人 <span class="text-white font-bold">单位 B</span> 与 <span class="text-white font-bold">单位 C</span> 的 42 个分项单价变动比例完全一致，相关性达 <span class="text-red-300 font-bold">0.998</span>。
+                            </p>
+</div>
+<div class="p-4 bg-white/5 rounded-lg border border-white/10">
+<h4 class="text-xs font-bold text-primary mb-2">尾数特征匹配</h4>
+<p class="text-[11px] leading-relaxed text-slate-300">
+                                投标单位 B 与 E 的报价清单中，超过 80% 的单价金额小数点后两位完全一致。
+                            </p>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 mt-6 bg-primary text-white rounded text-xs font-bold hover:bg-primary/90 transition-all">
+                    导出详细对比表
+                </button>
+<span class="absolute -bottom-8 -right-8 material-symbols-outlined text-white/5 text-[120px]">analytics</span>
+</div>
+</section>
+<!-- Pairwise Analysis Controls -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+<div class="lg:col-span-2 bg-white rounded-lg shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+<div>
+<h3 class="font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">compare_arrows</span>
+                        指定两两比对分析
+                    </h3>
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<div class="w-full">
+<label class="block text-[10px] font-bold text-slate-400 mb-1.5 uppercase">基准文档</label>
+<select class="w-full bg-white border border-slate-200 rounded py-2 px-3 text-sm text-slate-600 focus:ring-primary focus:border-primary outline-none">
+<option>单位 B (北京YYY实业发展公司)</option>
+<option>单位 A (上海XXX科技有限公司)</option>
+</select>
+</div>
+<div class="flex-shrink-0 text-primary">
+<span class="material-symbols-outlined">sync_alt</span>
+</div>
+<div class="w-full">
+<label class="block text-[10px] font-bold text-slate-400 mb-1.5 uppercase">对比文档</label>
+<select class="w-full bg-white border border-slate-200 rounded py-2 px-3 text-sm text-slate-600 focus:ring-primary focus:border-primary outline-none">
+<option>单位 E (杭州EEE电子有限公司)</option>
+<option>单位 C (深圳ZZZ信息技术有限公司)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="bg-primary text-white px-6 py-2 rounded text-sm font-bold hover:bg-primary/90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                        重新生成对比视图
+                    </button>
+</div>
+</div>
+<div class="bg-primary text-white rounded-lg p-6 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div>
+<h3 class="font-bold mb-4">比对概览报告</h3>
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs opacity-90">相似度综合评估</span>
+<span class="text-4xl font-black">82%</span>
+</div>
+<div class="w-full bg-white/20 h-2 rounded-full overflow-hidden mb-6">
+<div class="bg-white h-full" style="width: 82%"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<div class="text-2xl font-bold">142</div>
+<div class="text-[10px] opacity-80 uppercase font-bold">雷同段落</div>
+</div>
+<div>
+<div class="text-2xl font-bold">8.4k</div>
+<div class="text-[10px] opacity-80 uppercase font-bold">雷同字符</div>
+</div>
+</div>
+</div>
+<span class="absolute -bottom-8 -right-8 material-symbols-outlined text-white/10 text-[140px]">warning</span>
+</div>
+</div>
+<!-- Detail Side-by-Side Comparison -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-800">精细化片段对标分析</h3>
+<div class="flex bg-slate-100 p-1 rounded-lg gap-1">
+<button class="px-4 py-1.5 bg-white text-slate-600 text-xs font-medium rounded shadow-sm">全部段落</button>
+<button class="px-4 py-1.5 text-slate-400 text-xs font-medium rounded hover:text-primary transition-colors">仅显示雷同</button>
+</div>
+</div>
+<!-- Comparison Header -->
+<div class="grid grid-cols-2 gap-8 sticky top-16 z-20">
+<div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="text-sm font-bold text-slate-700">投标单位 B.docx</span>
+</div>
+<button class="text-primary text-[10px] font-bold hover:underline">查看原文</button>
+</div>
+<div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="text-sm font-bold text-slate-700">投标单位 E.pdf</span>
+</div>
+<button class="text-primary text-[10px] font-bold hover:underline">查看原文</button>
+</div>
+</div>
+<!-- Content Rows -->
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-8 bg-white p-6 rounded-lg shadow-sm border border-slate-200 relative group">
+<div class="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-red-400 rounded-full"></div>
+<div>
+<p class="text-sm leading-relaxed text-slate-600">
+                            针对本项目，我司计划投入专职技术人员<span class="bg-red-50 text-red-500 font-medium px-1 rounded">15名</span>，其中高级工程师<span class="bg-red-50 text-red-500 font-medium px-1 rounded">3名</span>，中级工程师<span class="bg-red-50 text-red-500 font-medium px-1 rounded">10名</span>。所有人员均具备<span class="bg-red-50 text-red-500 font-medium px-1 rounded">5年以上</span>相关行业从业经验。
+                        </p>
+</div>
+<div class="relative">
+<span class="absolute -top-3 -right-3 px-2 py-0.5 bg-red-400 text-white text-[9px] rounded font-bold">100% 匹配</span>
+<p class="text-sm leading-relaxed text-slate-600">
+                            针对本项目，我司计划投入专职技术人员<span class="bg-red-50 text-red-500 font-medium px-1 rounded">15名</span>，其中高级工程师<span class="bg-red-50 text-red-500 font-medium px-1 rounded">3名</span>，中级工程师<span class="bg-red-50 text-red-500 font-medium px-1 rounded">10名</span>。所有人员均具备<span class="bg-red-50 text-red-500 font-medium px-1 rounded">5年以上</span>相关行业从业经验。
+                        </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 bg-white p-6 rounded-lg shadow-sm border border-slate-200 relative">
+<div class="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-yellow-400 rounded-full"></div>
+<div>
+<p class="text-sm leading-relaxed text-slate-600">
+                            售后服务方案：提供7*24小时技术支持，<span class="bg-yellow-50 text-yellow-600 font-medium px-1 rounded">2小时内响应</span>故障，24小时内到达现场处理。
+                        </p>
+</div>
+<div class="relative">
+<span class="absolute -top-3 -right-3 px-2 py-0.5 bg-yellow-400 text-white text-[9px] rounded font-bold">64% 匹配</span>
+<p class="text-sm leading-relaxed text-slate-600">
+                            关于售后：我司承诺<span class="bg-yellow-50 text-yellow-600 font-medium px-1 rounded">2小时响应</span>，24小时到场。提供7*24小时全天候支持服务。
+                        </p>
+</div>
+</div>
+</div>
+<div class="py-12 flex justify-center">
+<button class="px-8 py-2.5 bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary transition-all rounded text-xs font-bold uppercase tracking-wider">
+                    加载更多对比片段 (当前 4 / 142)
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-200 py-8 px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-primary text-xl">analytics</span>
+<span class="text-sm font-bold text-slate-600">闪好采 - 智能招投标审计系统</span>
+</div>
+<div class="flex gap-8 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">服务条款</a>
+<a class="hover:text-primary transition-colors" href="#">隐私政策</a>
+<a class="hover:text-primary transition-colors" href="#">联系我们</a>
+</div>
+<p class="text-[10px] text-slate-400">© 2023 智能招投标审计系统. 版权所有.</p>
+</div>
+</footer>
+</div>
+</body></html>
